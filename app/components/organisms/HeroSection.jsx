@@ -1,23 +1,21 @@
-"use client";
+'use client';
 import { useState } from "react";
 import Card from "../molecules/Card";
 
-const HeroSection = () => {
+const HeroSection = ({ toggleOverlay }) => {
   const slides = [
     {
-      imageUrl:
-        "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/06/ryomen-sukuna.jpg",
+      imageUrl: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/06/ryomen-sukuna.jpg",
       title: "Ryomen Sukuna",
-      description:
-        "Dalam dunia Jujutsu, Yuji Itadori terjebak dalam pertempuran antara penyihir Jujutsu dan kutukan berbahaya. Dia bertarung untuk menyelamatkan umat manusia dari ancaman kegelapan.",
+      description: "Dalam dunia Jujutsu, Yuji Itadori terjebak dalam pertempuran...",
+      soundUrl: "https://www.myinstants.com/media/sounds/sukunas-ryoiki-tenkai.mp3"
     },
     {
-      imageUrl:
-        "https://c4.wallpaperflare.com/wallpaper/985/379/753/jujutsu-kaisen-kento-nanami-tie-goggles-glasses-hd-wallpaper-preview.jpg",
+      imageUrl: "https://c4.wallpaperflare.com/wallpaper/985/379/753/jujutsu-kaisen-kento-nanami-tie-goggles-glasses-hd-wallpaper-preview.jpg",
       title: "Kento Nanami",
-      description:
-        "Nanami initially left Jujutsu High after graduating to become a salaryman, but returned four years later to continue working as a jujutsu sorcerer.",
-    },
+      description: "Nanami initially left Jujutsu High after graduating...",
+      soundUrl: "https://www.myinstants.com/media/sounds/ato-wa-tanomimasu.mp3"
+    }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -48,6 +46,8 @@ const HeroSection = () => {
                 imageUrl={slide.imageUrl}
                 title={slide.title}
                 description={slide.description}
+                soundUrl={slide.soundUrl} // Passing soundUrl to Card component
+                toggleOverlay={toggleOverlay}
               />
             </div>
           ))}
@@ -120,6 +120,8 @@ const HeroSection = () => {
               imageUrl={slide.imageUrl}
               title={slide.title}
               description={slide.description}
+              soundUrl={slide.soundUrl} // Passing soundUrl to Card component
+              toggleOverlay={toggleOverlay}
             />
           </div>
         ))}

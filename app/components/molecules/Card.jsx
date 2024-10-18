@@ -1,7 +1,23 @@
 import Button from "../atoms/Button";
 import Image from "../atoms/Image";
+import { useState } from "react";
 
-const Card = ({ imageUrl, title, description }) => {
+const Card = ({ imageUrl, title, description, soundUrl, toggleOverlay }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const playAudio = (soundUrl) => {
+    if (!isPlaying) {
+      const audio = new Audio(soundUrl);
+      setIsPlaying(true);
+      toggleOverlay(true); // Show overlay
+      audio.play();
+      audio.onended = () => {
+        setIsPlaying(false); // Reset when the sound finishes
+        toggleOverlay(false); // Hide overlay
+      };
+    }
+  };
+
   return (
     <div className="relative glass card-shadow rounded-[32px] overflow-hidden w-full h-full">
       <Image
@@ -20,7 +36,13 @@ const Card = ({ imageUrl, title, description }) => {
             {description}
           </p>
 
-          <Button className="group flex items-center space-x-2 px-4 py-2 sm:w-auto md:w-auto md:px-6 md:py-3 bg-blue-600 hover:animate-tiltLeft transition rounded-full self-start">
+          <Button
+            className={`group flex items-center space-x-2 px-4 py-2 sm:w-auto md:w-auto md:px-6 md:py-3 bg-blue-600 hover:animate-tiltLeft transition rounded-full self-start ${
+              isPlaying ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            onClick={() => playAudio(soundUrl)}
+            disabled={isPlaying}
+          >
             <i className="fas fa-play text-md md:text-base lg:text-lg transition-transform duration-300 ease-in-out group-hover:animate-rollOutIn"></i>
             <span className="text-md md:text-base lg:text-lg">Play</span>
           </Button>
