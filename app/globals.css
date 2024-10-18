@@ -2,26 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* globals.css */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+  background: rgba(1, 0, 17, 0.87);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Glass Effect for Category Filters */
+.glass {
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark-glass {
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.521);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient Circle Background */
+.background-gradient {
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 99, 71, 0.4),
+      transparent 25%
+    ),
+    radial-gradient(circle at 80% 20%, rgba(60, 179, 113, 0.4), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(70, 130, 180, 0.4), transparent 20%);
+}
+
+/* Shadow for Cards */
+.card-shadow {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Reusable Gradient Overlay with Blur and Dark Fade Effect */
+.gradient-overlay {
+  backdrop-filter: blur(15px); /* Efek blur */
+  -webkit-backdrop-filter: blur(15px); /* Dukungan Safari */
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  ); /* Efek fade blur */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  ); /* Dukungan Safari */
+}
+.gradient-overlay-bottom {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
 }
