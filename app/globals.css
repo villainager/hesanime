@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* globals.css */
 body {
   font-family: "Inter", sans-serif;
   background: rgba(1, 0, 17, 0.87);
+  margin: 0;
+  padding: 0;
 }
 
 /* Glass Effect for Category Filters */
@@ -22,7 +30,7 @@ body {
 }
 
 /* Gradient Circle Background */
-.background-gradient {
+.bg-gradient-voice {
   background: radial-gradient(
       circle at 20% 30%,
       rgba(255, 99, 71, 0.4),
@@ -30,6 +38,26 @@ body {
     ),
     radial-gradient(circle at 80% 20%, rgba(60, 179, 113, 0.4), transparent 30%),
     radial-gradient(circle at 50% 80%, rgba(70, 130, 180, 0.4), transparent 20%);
+}
+.bg-gradient-anime {
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(71, 99, 255, 0.274),
+      transparent 25%
+    ),
+    radial-gradient(circle at 80% 20%, rgba(145, 20, 161, 0.4), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(39, 5, 119, 0.4), transparent 20%);
+}
+
+/* Gradient Circle Background */
+.bg-gradient-manga {
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(180, 70, 79, 0.4),
+      transparent 25%
+    ),
+    radial-gradient(circle at 80% 20%, rgba(133, 179, 60, 0.4), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(180, 70, 171, 0.4), transparent 20%);
 }
 
 /* Shadow for Cards */
@@ -65,4 +93,41 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
   scroll-behavior: smooth;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 65px;
+  height: 117px;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ff8001;
+  box-shadow: 0 0 0 50px;
+  clip-path: polygon(
+    100% 0,
+    23% 46%,
+    46% 44%,
+    15% 69%,
+    38% 67%,
+    0 100%,
+    76% 57%,
+    53% 58%,
+    88% 33%,
+    60% 37%
+  );
+}
+.loader:after {
+  animation: l8 1s infinite;
+  transform: perspective(300px) translateZ(0px);
+}
+@keyframes l8 {
+  to {
+    transform: perspective(300px) translateZ(180px);
+    opacity: 0;
+  }
 }

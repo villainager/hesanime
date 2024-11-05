@@ -5,13 +5,13 @@ import Card from "../molecules/Card";
 const HeroSection = ({ toggleOverlay }) => {
   const slides = [
     {
-      imageUrl: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/06/ryomen-sukuna.jpg",
+      imageUrl: "/assets/ryomen-sukuna.png",
       title: "Ryomen Sukuna",
       description: "Dalam dunia Jujutsu, Yuji Itadori terjebak dalam pertempuran...",
       soundUrl: "https://www.myinstants.com/media/sounds/sukunas-ryoiki-tenkai.mp3"
     },
     {
-      imageUrl: "https://c4.wallpaperflare.com/wallpaper/985/379/753/jujutsu-kaisen-kento-nanami-tie-goggles-glasses-hd-wallpaper-preview.jpg",
+      imageUrl: "/assets/kento-nanami.png",
       title: "Kento Nanami",
       description: "Nanami initially left Jujutsu High after graduating...",
       soundUrl: "https://www.myinstants.com/media/sounds/ato-wa-tanomimasu.mp3"

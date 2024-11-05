@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headless UI Style Button</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 1); /* Background gelap */
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .blur-effect {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 1;
+        }
+
+        .button-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1); /* Warna semi-transparan untuk glass effect */
+            backdrop-filter: blur(10px); /* Blur efek di belakang */
+            padding: 12px 24px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0); /* Border tipis transparan */
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button:hover,
+        .button:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="blur-effect"></div>
+        <div class="button-container">
+            <button class="button" type="button">
+                Save changes
+            </button>
+        </div>
+    </div>
+</body>
+</html>

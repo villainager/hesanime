@@ -1,16 +1,23 @@
-"use client"; // Menandai komponen ini sebagai Client Component
-
+// pages/beranda.jsx
+"use client";
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ onContentChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeContent, setActiveContent] = useState("voice");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleContentChange = (content) => {
+    setActiveContent(content);
+    onContentChange(content);
+    setIsOpen(false); // Close menu on mobile after content change
+  };
+
   return (
-    <div className="w-full px-4 max-w-7xl mx-auto mt-4  md:mt-6">
+    <div className="w-full px-4 max-w-7xl mx-auto mt-4 md:mt-6">
       <div className="w-full flex justify-between items-center px-8 py-4 glass rounded-full">
         {/* Logo */}
         <h1 className="text-white text-2xl font-bold">
@@ -18,18 +25,32 @@ const Navbar = () => {
           <span className="text-yellow-400">.id</span>
         </h1>
 
-        {/* Hamburger Menu (untuk mobile pada sm dan di bawahnya) */}
-        <div className="sm:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
-            <i className={`fas ${isOpen ? "fa-times" : "fa-bars"} text-2xl`}></i>
-          </button>
-        </div>
-
         {/* Navigation Menu (Tampilkan saat layar medium dan lebih besar) */}
         <div className="hidden sm:flex items-center space-x-8 bg-gray-900 px-6 py-2 rounded-full text-white">
-          <button className="text-white font-medium">Voice</button>
-          <button className="text-gray-400 font-medium">Anime</button>
-          <button className="text-gray-400 font-medium">Manga</button>
+          <button
+            onClick={() => handleContentChange("voice")}
+            className={`font-medium ${
+              activeContent === "voice" ? "text-white" : "text-gray-400"
+            }`}
+          >
+            Voice
+          </button>
+          <button
+            onClick={() => handleContentChange("anime")}
+            className={`font-medium ${
+              activeContent === "anime" ? "text-white" : "text-gray-400"
+            }`}
+          >
+            Anime
+          </button>
+          <button
+            onClick={() => handleContentChange("manga")}
+            className={`font-medium ${
+              activeContent === "manga" ? "text-white" : "text-gray-400"
+            }`}
+          >
+            Manga
+          </button>
           <button className="text-white">
             <i className="fas fa-search"></i>
           </button>
@@ -56,11 +77,16 @@ const Navbar = () => {
             <i className="fas fa-chevron-down text-gray-200"></i>
           </div>
         </div>
+
+        {/* Mobile Menu Toggle Button */}
+        <button onClick={toggleMenu} className="sm:hidden text-white">
+          <i className={`fas ${isOpen ? "fa-times" : "fa-bars"} text-2xl`}></i>
+        </button>
       </div>
 
       {/* Mobile Navigation Menu (Dropdown Fullscreen) */}
       <div
-        className={`fixed  inset-0 dark-glass rounded-[30px] backdrop-blur-[30px] text-white flex flex-col items-start justify-start transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-0 dark-glass rounded-[30px] backdrop-blur-[30px] text-white flex flex-col items-start justify-start transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
         } sm:hidden`}
         style={{ zIndex: 999 }}
@@ -78,15 +104,30 @@ const Navbar = () => {
 
         {/* Menu List */}
         <div className="flex flex-col items-start w-full px-4 p-4 space-y-4">
-          <button className="flex items-center space-x-2 text-white font-medium hover:bg-gray-800 px-4 py-2 rounded-lg w-full">
+          <button
+            onClick={() => handleContentChange("voice")}
+            className={`flex items-center space-x-2 font-medium hover:bg-gray-800 px-4 py-2 rounded-lg w-full ${
+              activeContent === "voice" ? "text-white" : "text-gray-400"
+            }`}
+          >
             <i className="fas fa-microphone text-blue-400"></i>
             <span>Voice</span>
           </button>
-          <button className="flex items-center space-x-2 text-white font-medium hover:bg-gray-800 px-4 py-2 rounded-lg w-full">
+          <button
+            onClick={() => handleContentChange("anime")}
+            className={`flex items-center space-x-2 font-medium hover:bg-gray-800 px-4 py-2 rounded-lg w-full ${
+              activeContent === "anime" ? "text-white" : "text-gray-400"
+            }`}
+          >
             <i className="fas fa-film text-yellow-400"></i>
             <span>Anime</span>
           </button>
-          <button className="flex items-center space-x-2 text-white font-medium hover:bg-gray-800 px-4 py-2 rounded-lg w-full">
+          <button
+            onClick={() => handleContentChange("manga")}
+            className={`flex items-center space-x-2 font-medium hover:bg-gray-800 px-4 py-2 rounded-lg w-full ${
+              activeContent === "manga" ? "text-white" : "text-gray-400"
+            }`}
+          >
             <i className="fas fa-book text-pink-400"></i>
             <span>Manga</span>
           </button>
